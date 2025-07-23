@@ -24,7 +24,7 @@ export const createProjectController = async (req: Request, res: Response) => {
 
             const finalPayload = {
                 ...otherProjectFields,
-                imagUrl: imageUrls
+                images: imageUrls
             };
 
             const savedProject = await createProjectService(finalPayload);
