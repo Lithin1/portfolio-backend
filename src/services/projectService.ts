@@ -9,3 +9,12 @@ export const createProjectService = async (projectData: IProject): Promise<IProj
 export const getProjectService = async (): Promise<IProject[]> => {
     return await Project.find().sort({ createdAt: -1 });
 };
+
+
+export const updateProjectService = async (id: string, updatedData: Partial<IProject>): Promise<IProject | null> => {
+  const updatedProject = await Project.findByIdAndUpdate(id, updatedData, {
+    new: true,
+    runValidators: true,
+  });
+  return updatedProject;
+};

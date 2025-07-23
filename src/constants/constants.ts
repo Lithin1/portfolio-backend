@@ -18,7 +18,8 @@ export const APP_CODES = {
     USER_REGISTER_SUCCESS: { code: "IN006", message: "User registered successfully!" },
     USER_REGISTER_FAILED: { code: "IN007", message: "Registration failed" },
     USER_LOGIN_SUCCESS: { code: "IN008", message: "Login Sucessful!" },
-    USER_LOGIN_FAILED: { code: "IN009", message: "Login Failed" }
+    USER_LOGIN_FAILED: { code: "IN009", message: "Login Failed" },
+    UPDATE_DATA_FAILED: { code: "IN010", message: "Data failed to update" },
 };
 
 

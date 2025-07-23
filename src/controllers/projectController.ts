@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import { createProjectService, getProjectService } from "../services/projectService";
+import { createProjectService, getProjectService, updateProjectService } from "../services/projectService";
 import { APP_CODES } from "../constants/constants";
 import { logger } from "../config/logger";
 import { sendResponse } from "../utils/sendResponse";
@@ -55,6 +55,41 @@ export const getAllProjectsController = async (_req: Request, res: Response) => 
         );
     } catch (error) {
         logger.error(`Error fetching projects: ${error}`);
+        return sendResponse(
+            res,
+            StatusCodes.INTERNAL_SERVER_ERROR,
+            APP_CODES.UNKNOWN_ERROR.code,
+            APP_CODES.UNKNOWN_ERROR.message,
+            error
+        );
+    }
+};
+
+
+export const updateProjectController = async (req: Request, res: Response) => {
+  try {
+    const projectId = req.params.id;
+    const updatedData = req.body;
+
+    const updatedProject = await updateProjectService(projectId, updatedData);
+
+    if (!updatedProject) {
+      return res.status(StatusCodes.NOT_FOUND).json({
+        statusCode: "PR404",
+        message: "Project not found",
+      });
+    }
+
+    return sendResponse(
+            res,
+            StatusCodes.OK,
+            APP_CODES.CREATE_SUCCESS.code,
+            APP_CODES.CREATE_SUCCESS.message,
+            null,
+            updatedProject
+        );
+  } catch (error) {
+        logger.error(`Failed to update project: ${error}`);
         return sendResponse(
             res,
             StatusCodes.INTERNAL_SERVER_ERROR,
