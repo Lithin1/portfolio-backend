@@ -8,6 +8,6 @@ const projectRouter = Router();
 
 projectRouter.post('/', verifyToken, createProjectController)
 projectRouter.get('/', getAllProjectsController)
-projectRouter.patch('/', updateProjectController)
+projectRouter.patch('/:id',verifyToken, updateProjectController)
 
 export default projectRouter
