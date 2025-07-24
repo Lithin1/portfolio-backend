@@ -8,4 +8,6 @@ export const ENV_CONFIG = {
     dbName: process.env.DB_NAME!,
     jwtSecret: process.env.JWT_SECRET! as string, // required string
     jwtExpireIn: process.env.JWT_EXPIRES_IN as string|| "1d" ,
+    frontendUrl:process.env.FRONTEND_URL as string,
+    localFrontendUrl:process.env.LOCAL_FRONTEND_URL as string
 };
